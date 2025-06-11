@@ -24,11 +24,13 @@ jobs:
         cargo \
         libgstreamer1.0-dev \
         libgstreamer-plugins-base1.0-dev \
+        libgstreamer-plugins-bad1.0-dev \
         libclang-dev \
         libssl-dev \
         libsoup2.4-dev \
         libcairo2-dev \
         libpango1.0-dev
+        pkg-config --modversion gstreamer-webrtc-1.0
 
     # 安装rush
     - name: Setup rush
