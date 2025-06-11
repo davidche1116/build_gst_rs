@@ -44,12 +44,16 @@ jobs:
       run: |
         git clone https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs.git
         cd gst-plugins-rs
-        git checkout 0.12.11
-        cargo build
-        ls
+        git checkout 0.13.6
+        cargo build --release
 
     # 上传
-    #- uses: actions/upload-artifact@v4
-    #  with:
-     #   name: Qt_${{env.QT_VERSION}}-${{env.FILE_NAME}}
-    #    path: Qt_${{env.QT_VERSION}}-${{env.FILE_NAME}}.7z
+    - name: Archive ZIP
+      uses: actions/upload-artifact@v4
+      with:
+        name: target
+        path: |
+          target/**
+        overwrite: true
+        compression-level: 9
+        retention-days: 3
