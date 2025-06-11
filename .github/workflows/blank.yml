@@ -27,7 +27,8 @@ jobs:
         libclang-dev \
         libssl-dev \
         libsoup2.4-dev \
-        libcairo2-dev
+        libcairo2-dev \
+        libpango1.0-dev
 
     # 安装rush
     - name: Setup rush
