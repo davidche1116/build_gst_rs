@@ -46,14 +46,21 @@ jobs:
         cd gst-plugins-rs
         git checkout 0.13.6
         cargo build --release
+        ls
+        
+    # 查看目录
+    - name: Look
+      run: |
+        ls
+        tree
 
     # 上传
     - name: Archive ZIP
       uses: actions/upload-artifact@v4
       with:
-        name: target
+        name: X64
         path: |
-          target/**
+          release/**
         overwrite: true
         compression-level: 9
         retention-days: 3
