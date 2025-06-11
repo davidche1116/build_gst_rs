@@ -60,7 +60,7 @@ jobs:
       with:
         name: X64
         path: |
-          release/**
+          gst-plugins-rs/target/**
         overwrite: true
         compression-level: 9
         retention-days: 3
