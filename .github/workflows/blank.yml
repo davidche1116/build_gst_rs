@@ -1,0 +1,50 @@
+name: build_gst_rs
+
+on: workflow_dispatch
+#on: [push, pull_request]
+
+jobs:
+  build_gst_rs:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 检出本仓库
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 安装依赖
+    - name: Setup apt
+      run: |
+        sudo apt update
+        sudo apt install -y \
+        build-essential \
+        git \
+        meson \
+        ninja-build \
+        cargo \
+        libgstreamer1.0-dev \
+        libgstreamer-plugins-base1.0-dev \
+        libclang-dev \
+        libssl-dev \
+        libsoup2.4-dev
+
+    # 安装rush
+    - name: Setup rush
+      run: |
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+        source "$HOME/.cargo/env"
+        rustup default stable
+
+    # 获取源码
+    - name: Get Git
+      run: |
+        git clone https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs.git
+        cd gst-plugins-rs
+        cargo build
+        ls
+
+    # 上传
+    #- uses: actions/upload-artifact@v4
+    #  with:
+     #   name: Qt_${{env.QT_VERSION}}-${{env.FILE_NAME}}
+    #    path: Qt_${{env.QT_VERSION}}-${{env.FILE_NAME}}.7z
