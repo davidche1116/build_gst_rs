@@ -33,7 +33,8 @@ jobs:
         libssl-dev \
         libsoup2.4-dev \
         libcairo2-dev \
-        libpango1.0-dev
+        libpango1.0-dev \
+        libunwind-dev
         pkg-config --modversion gstreamer-webrtc-1.0
 
     # 安装rush
