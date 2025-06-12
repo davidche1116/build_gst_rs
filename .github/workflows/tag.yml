@@ -9,7 +9,7 @@ on:
 
 jobs:
   build_gst_rs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     # 检出本仓库
