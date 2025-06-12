@@ -9,7 +9,7 @@ on:
 
 jobs:
   build_gst_rs:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-last
 
     steps:
     # 检出本仓库
@@ -50,8 +50,10 @@ jobs:
         git clone https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs.git
         cd gst-plugins-rs
         git checkout ${{ inputs.tag_name }}
-        cargo build --release
-        ls
+        #cargo build --release
+        #ls
+        cargo install cargo-c
+        cargo cbuild
         
     # 查看目录
     - name: Look
