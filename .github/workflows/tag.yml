@@ -9,7 +9,7 @@ on:
 
 jobs:
   build_gst_rs:
-    runs-on: ubuntu-last
+    runs-on: ubuntu-24.04-arm
 
     steps:
     # 检出本仓库
