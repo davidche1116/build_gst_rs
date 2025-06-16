@@ -53,23 +53,39 @@ jobs:
         #cargo build --release
         #ls
         cargo install cargo-c
-        cargo cbuild
+        cargo cbuild --release --destdir=/home/runner/work/build_gst_rs/build_gst_rs/gst-plugins-rs/dist
+        cargo cinstall --release --destdir=/home/runner/work/build_gst_rs/build_gst_rs/gst-plugins-rs/dist
+
         
     # 查看目录
     - name: Look
       run: |
         ls
-        tree
+        #tree
 
     # 上传
-    - name: Archive ZIP
+    - name: target ZIP
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ inputs.tag_name }}-x86_64
+        name: ${{ inputs.tag_name }}-target
         path: |
           gst-plugins-rs/target/CACHEDIR.TAG
           gst-plugins-rs/target/release/*.so
           gst-plugins-rs/target/release/*.d
+          gst-plugins-rs/target/aarch64-unknown-linux-gnu/CACHEDIR.TAG
+          gst-plugins-rs/target/aarch64-unknown-linux-gnu/release/*.so
+          gst-plugins-rs/target/aarch64-unknown-linux-gnu/release/*.d
+        overwrite: true
+        compression-level: 9
+        retention-days: 3
+        
+    # 上传
+    - name: dist ZIP
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.tag_name }}-dist
+        path: |
+          gst-plugins-rs/dist/**
         overwrite: true
         compression-level: 9
         retention-days: 3
