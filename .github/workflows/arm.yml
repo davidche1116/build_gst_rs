@@ -44,8 +44,8 @@ jobs:
       run: |
         git clone https://gitlab.freedesktop.org/gstreamer/gst-plugins-rs.git
         cd gst-plugins-rs
-        git checkout 0.13.6
-        cargo build --release
+        git checkout 0.11.4
+        cargo build -p gst-plugin-webrtchttp --release
         ls
         
     # 查看目录
